@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Paleta de colores</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
@@ -17,12 +21,16 @@
 
     <header>
         <h1>Paleta de colores</h1>
-        <p>Paletas de colores aleatorias.</p>
+
+        <p>
+            Paletas de colores aleatorias.
+        </p>
     </header>
 
     <main>
 
         <section class="controls">
+
             <h2>Generar nueva paleta</h2>
 
             <label for="palette-size">
@@ -35,16 +43,27 @@
                 <option value="9">9 colores</option>
             </select>
 
+            <label for="color-format">
+                Formato de color
+            </label>
+
+            <select id="color-format">
+                <option value="hex">HEX</option>
+                <option value="hsl">HSL</option>
+            </select>
+
             <button id="generate-btn">
                 Generar
             </button>
+
         </section>
 
         <section class="palette-section">
+
             <h2>Paleta generada</h2>
 
             <div class="palette" id="palette-container">
-    <!-- Acá se generan los colores -->
+                <!-- Acá se generan los colores -->
             </div>
 
         </section>
@@ -52,14 +71,21 @@
     </main>
 
     <footer>
-        <p>Proyecto Integrador - Módulo 1 - Programación</p>
+        <p>
+            Proyecto Integrador - Módulo 1 - Programación
+        </p>
     </footer>
-    <div id="toast" class="toast">Color copiado</div>
+
+    <div id="toast" class="toast">
+        Color copiado
+    </div>
 
     <script src="./JS/script.js"></script>
 
 </body>
+
 </html>
+
 
 
 
