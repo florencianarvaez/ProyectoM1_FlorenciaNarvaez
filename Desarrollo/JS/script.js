@@ -1,3 +1,4 @@
+const colorFormat = document.getElementById("color-format");
 const toast = document.getElementById("toast");
 const generateButton = document.getElementById("generate-btn");
 const paletteContainer = document.getElementById("palette-container");
@@ -17,21 +18,34 @@ function generateHexColor() {
     return color;
 }
 
+function generateHslColor() {
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = Math.floor(Math.random() * 100);
+    const lightness = Math.floor(Math.random() * 100);
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
 function generatePalette() {
+
     paletteContainer.innerHTML = "";
 
     const size = Number(paletteSize.value);
 
-    for (let i = 0; i < size; i++) {let color;
+    for (let i = 0; i < size; i++) {
 
-if (lockedColors[i]) {
-    color = lockedColors[i];
-} else {
-    color = generateHexColor();
-}
+        let color;
 
+        if (lockedColors[i]) {
+            color = lockedColors[i];
+        } else {
 
-      
+            if (colorFormat.value === "hex") {
+                color = generateHexColor();
+            } else {
+                color = generateHslColor();
+            }
+        }
 
         const colorCard = document.createElement("div");
 
@@ -40,36 +54,38 @@ if (lockedColors[i]) {
         colorCard.style.backgroundColor = color;
 
         colorCard.textContent = color;
+
         const lockButton = document.createElement("button");
-lockButton.textContent = lockedColors[i] ? "🔒" : "🔓";
-lockButton.classList.add("lock-btn");
 
-lockButton.addEventListener("click", (event) => {
-    event.stopPropagation();
+        lockButton.textContent = lockedColors[i] ? "🔒" : "🔓";
 
-    if (lockedColors[i]) {
-        lockedColors[i] = null;
-        lockButton.textContent = "🔓";
-    } else {
-        lockedColors[i] = color;
-        lockButton.textContent = "🔒";
-    }
-});
+        lockButton.classList.add("lock-btn");
 
-colorCard.appendChild(lockButton);
+        lockButton.addEventListener("click", (event) => {
 
+            event.stopPropagation();
+
+            if (lockedColors[i]) {
+                lockedColors[i] = null;
+                lockButton.textContent = "🔓";
+            } else {
+                lockedColors[i] = color;
+                lockButton.textContent = "🔒";
+            }
+        });
+
+        colorCard.appendChild(lockButton);
 
         colorCard.addEventListener("click", () => {
 
-    navigator.clipboard.writeText(color);
+            navigator.clipboard.writeText(color);
 
-    toast.classList.add("show");
+            toast.classList.add("show");
 
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2000);
-
-});
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2000);
+        });
 
         paletteContainer.appendChild(colorCard);
     }
